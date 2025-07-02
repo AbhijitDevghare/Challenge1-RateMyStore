@@ -3,15 +3,14 @@ import { DataTypes } from "sequelize";
 import sequelize from "../config/sequelize.js";
 import UserBase from "./UserBase.js";
 
-class User extends UserBase {}
+class Admin extends UserBase {}
 
-User.init(
+Admin.init(
   {
     ...UserBase.baseFields(),
     // You can extend with extra fields here if needed
   },
-  UserBase.baseOptions("User", "users", sequelize)
-  
+  UserBase.baseOptions("Admin", "admins", sequelize)
 );
 
-export default User;
+export default Admin;
