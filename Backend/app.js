@@ -33,7 +33,7 @@ import routes from "./src/routers/v1/index.js";
 app.use('/api/v1', routes);
 
 // Error handling middleware 
-// import errorMiddleware from './src/middlewares/error.middleware.js';
-// app.use(errorMiddleware);
+import errorMiddleware from './src/middlewares/error.middleware.js';
+app.use(errorMiddleware);
 
 export default app;

@@ -1,3 +1,3 @@
-import userController from "./UserController.js";
+import authController from "./AuthController.js";
 
-export { userController }; // named export
+export { authController }; // named export
