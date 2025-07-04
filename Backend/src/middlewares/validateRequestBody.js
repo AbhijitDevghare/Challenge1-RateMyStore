@@ -30,7 +30,8 @@ class ValidateRequestBody {
         "email",
         "password",
         "confirmPassword",
-        "address"
+        "address",
+        "phoneNumber"
       ]);
 
       this.isPasswordEqualToConfirmPassword(req.body.password, req.body.confirmPassword);
@@ -51,7 +52,8 @@ class ValidateRequestBody {
         "confirmPassword",
         "address",
         "storeName",
-        "gstNumber"
+        "gstNumber",
+        "phoneNumber"
       ]);
 
     //   this.isPasswordEqualToConfirmPassword(req.body.password, req.body.confirmPassword);

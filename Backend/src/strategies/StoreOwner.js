@@ -32,6 +32,7 @@ export default class StoreOwnerStrategy extends AuthStrategy {
       address,
       storeName,
       gstNumber = null,
+      phoneNumber
     } = data;
 
     const storeOwner = await StoreOwner.create({
@@ -41,7 +42,8 @@ export default class StoreOwnerStrategy extends AuthStrategy {
       password,
       address,
       storeName,
-      gstNumber
+      gstNumber,
+      phoneNumber
     });
 
     return storeOwner;

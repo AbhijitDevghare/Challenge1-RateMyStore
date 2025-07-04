@@ -29,45 +29,70 @@ class UserBase extends Model {
         allowNull: false,
         unique: true,
         validate: {
-          notEmpty: true,
-          len: [3, 100],
+          notNull: { msg: "Username is required" },
+          notEmpty: { msg: "Username cannot be empty" },
+          len: {
+            args: [3, 100],
+            msg: "Username must be between 3 and 100 characters",
+          },
         },
       },
-      name:{
-        type:DataTypes.STRING,
-        allowNull:false,
-        validate:{
-            notEmpty:true,
-            len:[20,60]
-        }
-      }
-      ,
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notNull: { msg: "Name is required" },
+          notEmpty: { msg: "Name cannot be empty" },
+          len: {
+            args: [3, 60],
+            msg: "Name must be between 3 and 60 characters",
+          },
+        },
+      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
         validate: {
-          isEmail: true,
-          notEmpty: true
+          notNull: { msg: "Email is required" },
+          notEmpty: { msg: "Email cannot be empty" },
+          isEmail: { msg: "Email must be valid" },
+        },
+      },
+      phoneNumber: {
+        type: DataTypes.BIGINT, // or STRING if you want leading zeros
+        allowNull: false,
+        unique: true,
+        validate: {
+          notNull: { msg: "Phone number is required" },
+          notEmpty: { msg: "Phone number cannot be empty" },
+          isNumeric: { msg: "Phone number must be numeric" },
         },
       },
       password: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          notEmpty: true,
-          len: [8, 16],
+        validate: { 
+          notNull: { msg: "Password is required" },
+          notEmpty: { msg: "Password cannot be empty" },
+          len: {
+            args: [8, 16],
+            msg: "Password must be between 8 and 16 characters",
+          },
         },
       },
-      address:{
+      address: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
         validate: {
-          notEmpty: true,
-          len: [20, 400],
-        }
-
+          notNull: { msg: "Address is required" },
+          notEmpty: { msg: "Address cannot be empty" },
+          len: {
+            args: [20, 400],
+            msg: "Address must be between 20 and 400 characters",
+          },
+        },
       },
       status: {
         type: DataTypes.ENUM("active", "inactive"),
@@ -86,8 +111,8 @@ class UserBase extends Model {
       modelName,
       tableName,
       name: {
-      singular: modelName.toLowerCase(),
-      plural: modelName.toLowerCase() + 's'
+        singular: modelName.toLowerCase(),
+        plural: modelName.toLowerCase() + 's',
       },
       timestamps: true,
       hooks: {

@@ -23,14 +23,15 @@ export default class UserStrategy extends AuthStrategy {
   async register(data) {
     await this.validate(data);
 
-    const { username, name, email, password, address } = data;
+    const { username, name, email, password, address ,phoneNumber} = data;
 
     const user = await User.create({
       username,
       name,
       email,
       password,
-      address
+      address,
+      phoneNumber
     });
 
     return user;
