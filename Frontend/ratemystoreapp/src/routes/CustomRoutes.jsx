@@ -1,13 +1,14 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import AppLayout from "../layouts/AppLayout";
-// import StoreList from "../pages/user/StoreList";
-// import MyRatings from "../pages/user/MyRatings";
+
 import Home from "../pages/Home";
 import RegisterPage from "../pages/RegisterPage";
 import LoginPage from "../pages/LoginPage";
 import StoreList from "../pages/user/StoreList";
 import MyRatings from "../pages/user/MyRatings";
+import StoreOwnerDashboard from "../pages/storeowner/StoreOwnerDashboard";
+import StoreRatings from "../pages/storeowner/StoreRatings";
 
 function CustomeRoutes() {
 
@@ -25,9 +26,10 @@ function CustomeRoutes() {
                 
 
                 {/* Store Owner */}
-                {/* <Route path="store/dashboard" element={<Dashboard />} />
-                <Route path="store/ratings" element={<StoreRatings />} /> */}
-
+                
+                <Route path="store/dashboard" element={<StoreOwnerDashboard />} />
+                <Route path="store/ratings" element={<StoreRatings />} />
+        
                 {/* Admin */}
                 {/* <Route path="admin/dashboard" element={<AdminDashboard />} />
                 <Route path="admin/users" element={<UserList />} />

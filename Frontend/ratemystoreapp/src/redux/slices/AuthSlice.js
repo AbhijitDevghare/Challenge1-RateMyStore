@@ -78,7 +78,7 @@ export const adminLogin = createAsyncThunk("/auth/adminLogin", async (data) => {
 
 export const logout = createAsyncThunk("/auth/logout", async () => {
     try {
-        const res = axiosInstance.get("/user/auth/logout");
+        const res = axiosInstance.get("/auth/logout");
         toast.promise(res, {
             error: "Failed to logged out"
         });

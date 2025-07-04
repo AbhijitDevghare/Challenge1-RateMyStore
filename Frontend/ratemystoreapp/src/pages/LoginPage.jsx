@@ -29,7 +29,7 @@ const LoginPage = () => {
     const endpoint = `${role}`;
     const res = await dispatch(login({ identifier, password, endpoint }));
     if (res?.payload?.success) {
-      navigate(`/${role}/dashboard`);
+      navigate(`/`);
     }
   };
 

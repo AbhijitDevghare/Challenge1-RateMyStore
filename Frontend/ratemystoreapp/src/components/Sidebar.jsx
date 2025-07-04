@@ -25,7 +25,7 @@ const Sidebar = () => {
             <NavItem to="/user/ratings" label="My Ratings" />
           </>
         );
-      case 'storeowner':
+      case 'store-owner':
         return (
           <>
             <NavItem to="/store/dashboard" label="Dashboard" />

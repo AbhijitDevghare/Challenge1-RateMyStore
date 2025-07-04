@@ -41,20 +41,36 @@ export async function loginUser({ Model, data, role, notFoundMessage = "User not
     user.password = undefined;
 
 
-    
-    const safeUser = {
+    let safeUser;
+
+    if (role === 'store-owner') {
+      safeUser = {
         id: user.id,
         name: user.name,
         email: user.email,
         username: user.username,
-        phoneNumber:user.phoneNumber,
-        address:user.address,
-        status:user.status,
-        role:role,
-        lastLogin: user.lastLogin
+        phoneNumber: user.phoneNumber,
+        address: user.address,
+        storeName: user.storeName,
+        gstNumber: user.gstNumber,
+        averageRating: user.averageRating,
+        status: user.status,
+        role: role,
+        lastLogin: user.lastLogin,
       };
+    } else {
+      // For User or Admin — fewer fields
+      safeUser = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        username: user.username,
+        role: role,
+        lastLogin: user.lastLogin,
+      };
+    }
 
-
+    
   const cookieOptions = {
     maxAge: 7 * 24 * 60 * 60 * 1000,
     httpOnly: true,

@@ -1,4 +1,4 @@
-import storeOwnerService from "../services/StoreOwnerService.js";
+import {storeOwnerService} from "../services/index.js";
 
 class StoreOwnerController {
   async getAll(req, res, next) {
@@ -39,8 +39,10 @@ class StoreOwnerController {
 
   async getRatings(req, res, next) {
     try {
-      const ratings = await storeOwnerService.getRatings(req.params.id);
-      res.json(ratings);
+      const id = await req.user.id;
+      console.log("REQUEST USER/ OWNER ID ",id)
+      const ratings = await storeOwnerService.getRatings(id);
+      res.status(200).json(ratings);
     } catch (err) {
       next(err);
     }

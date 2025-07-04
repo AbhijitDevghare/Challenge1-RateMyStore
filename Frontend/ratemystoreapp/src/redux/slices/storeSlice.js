@@ -11,12 +11,13 @@ export const fetchStores = createAsyncThunk(
     try {
       const response = await axiosInstance.get('/store');
       console.log(response)
-      return response.data.rows; // Assuming backend sends { stores: [...] }
+      return response.data.rows; 
     } catch (err) {
       return rejectWithValue(err.response?.data?.message || 'Failed to fetch stores');
     }
   }
 );
+
 
 export const rateStore = createAsyncThunk(
   'store/rateStore',

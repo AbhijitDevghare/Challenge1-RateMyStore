@@ -14,9 +14,9 @@ class Auth {
             return next(new AppError("Not Authorized: No token provided", 401));
         }
 
-        console.log(token);
         try {
             const payload = jwt.verify(token, process.env.JWT_SECRET);
+            // console.log("JWTAUTH PRINING USER ID",payload.id)
             req.user = { id: payload.id, email: payload.email };
             next();
         } catch (error) {

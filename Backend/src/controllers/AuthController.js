@@ -37,22 +37,22 @@ class AuthController {
     }
 
   //   // Logout Controller
-  //    async logout(req, res, next) {
-  //     try {
-  //       const cookieOptions = {
-  //         expires: new Date(),
-  //         httpOnly: true
-  //       };
+     async logout(req, res, next) {
+      try {
+        const cookieOptions = {
+          expires: new Date(),
+          httpOnly: true
+        };
 
-  //       res.cookie("token", null, cookieOptions);
-  //       res.status(200).json({
-  //         success: true,
-  //         message: "Logged out successfully..."
-  //       });
-  //     } catch (error) {
-  //       next(error);
-  //     }
-  //   }
+        res.cookie("token", null, cookieOptions);
+        res.status(200).json({
+          success: true,
+          message: "Logged out successfully..."
+        });
+      } catch (error) {
+        next(error);
+      }
+    }
 
 
   //   // Forget Password Controller
