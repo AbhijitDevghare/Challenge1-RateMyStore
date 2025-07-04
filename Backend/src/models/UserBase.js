@@ -1,17 +1,19 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import { Model, DataTypes } from "sequelize";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 class UserBase extends Model {
-  generateJwtToken() {
+  generateJwtToken(role) {
     return jwt.sign(
-      { id: this.id, username: this.username, role: this.role },
-      process.env.SECRET,
+      { id: this.id, email: this.email, role: role },
+      process.env.JWT_SECRET,
       { expiresIn: "168h" }
     );
   }
 
-  async isPasswordValid(plainPassword) {
+  async isPasswordMatch(plainPassword) {
     return await bcrypt.compare(plainPassword, this.password);
   }
 

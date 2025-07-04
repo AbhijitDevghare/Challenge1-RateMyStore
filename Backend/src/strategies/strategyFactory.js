@@ -2,7 +2,7 @@ import UserStrategy from './UserStrategy.js';
 // import AdminStrategy from './AdminStrategy.js';
 import StoreOwnerStrategy from './StoreOwner.js';
 
-const registrationStrategyFactory = (role) => {
+const authStrategyFactory = (role) => {
     switch (role) {
         case 'user':
             return new UserStrategy();
@@ -15,4 +15,4 @@ const registrationStrategyFactory = (role) => {
     }
 };
 
-export default registrationStrategyFactory;
+export default authStrategyFactory;

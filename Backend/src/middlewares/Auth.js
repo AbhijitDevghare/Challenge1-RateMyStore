@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import jwt from 'jsonwebtoken';
 import { Op } from 'sequelize';
 import { Admin ,StoreOwner,User} from '../models/index.js';
@@ -12,8 +14,9 @@ class Auth {
             return next(new AppError("Not Authorized: No token provided", 401));
         }
 
+        console.log(token);
         try {
-            const payload = jwt.verify(token, process.env.SECRET);
+            const payload = jwt.verify(token, process.env.JWT_SECRET);
             req.user = { id: payload.id, email: payload.email };
             next();
         } catch (error) {
@@ -21,9 +24,9 @@ class Auth {
         }
     }
 
-     setRole(role) {
+      setRole(role) {
         return (req, res, next) => {
-        req.body.role = role;
+         req.body.role =  role;
         next();
         };
     }

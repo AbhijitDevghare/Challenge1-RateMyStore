@@ -1,28 +1,22 @@
 import { User } from '../models/index.js';
 import AppError from '../utils/error.utils.js';
 import AuthStrategy from './AuthStrategy.js';
+import { loginUser } from "../utils/login.utils.js";
 
 export default class UserStrategy extends AuthStrategy {
   async validate(data) {
-    const { username, name, email, password, confirmPassword, address } = data;
+    const { email, username } = data;
 
-    // Validate required fields
-    AuthStrategy.checkRequiredFields(data, [
-      "username",
-      "name",
-      "email",
-      "password",
-      "confirmPassword",
-      "address"
-    ]);
-
-    await AuthStrategy.isEmailValid(email);
-    AuthStrategy.isPasswordEqualToConfirmPassword(password, confirmPassword);
-
-    // Check uniqueness
+    // Check if email already exists
     const existing = await User.findOne({ where: { email } });
     if (existing) {
       throw new AppError("User already exists", 400);
+    }
+
+    // Check if username already exists
+    const existingUsername = await User.findOne({ where: { username } });
+    if (existingUsername) {
+      throw new AppError("Username already taken", 400);
     }
   }
 
@@ -40,5 +34,14 @@ export default class UserStrategy extends AuthStrategy {
     });
 
     return user;
+  }
+
+  async login(data, role = "user") {
+    return loginUser({
+      Model: User,
+      data,
+      role,
+      notFoundMessage: "User not found"
+    });
   }
 }
