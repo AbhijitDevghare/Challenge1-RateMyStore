@@ -23,21 +23,14 @@ class AuthController {
   //   // Login Controller
      async login(req, res, next) {
       try {
-        // console.log(req.body)
-        const { role } = req.body;
-
-        if (!role) {
-            throw new AppError("Role is required", 400);
-        }
-
         if(!req.body.identifier || !req.body.password)
         {
              throw new AppError("Both identifier and password are required", 400);
         }
-        const {user,token,cookieOptions} = await authService.login(req.body);
+        const {safeUser,token,cookieOptions} = await authService.login(req.body);
 
         res.cookie("token", token, cookieOptions);
-        res.status(200).json({ success: true, message: "Login Successful", user });
+        res.status(200).json({ success: true, message: "Login Successful", user:safeUser });
       } catch (err) {
         next(err);
       }

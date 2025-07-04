@@ -45,6 +45,22 @@ class StoreOwnerController {
       next(err);
     }
   }
+
+  async addRatings(req,res,next)
+  {
+    try {
+      const userId = req.user.id;
+      const { storeOwnerId } = req.params;
+      const {rating } = req.body;
+      await storeOwnerService.addRatings(rating, storeOwnerId, userId)
+      res.status(201).json({
+        success:true,
+        message:"Store rated successfully"
+      })
+    } catch (error) {
+      next(error)
+    }
+  }
 }
 
 export default new StoreOwnerController();

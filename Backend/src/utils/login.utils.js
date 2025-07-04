@@ -41,6 +41,20 @@ export async function loginUser({ Model, data, role, notFoundMessage = "User not
     user.password = undefined;
 
 
+    
+    const safeUser = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        username: user.username,
+        phoneNumber:user.phoneNumber,
+        address:user.address,
+        status:user.status,
+        role:role,
+        lastLogin: user.lastLogin
+      };
+
+
   const cookieOptions = {
     maxAge: 7 * 24 * 60 * 60 * 1000,
     httpOnly: true,
@@ -48,5 +62,5 @@ export async function loginUser({ Model, data, role, notFoundMessage = "User not
     sameSite: "Lax"
   };
 
-  return { user, token, cookieOptions };
+  return { safeUser, token, cookieOptions };
 }

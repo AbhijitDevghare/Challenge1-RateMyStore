@@ -4,7 +4,7 @@ import auth from "../../middlewares/Auth.js";
 
 const router = express.Router();
 
-router.get("/", auth.jwtAuth, auth.setRole("storeowner"), storeOwnerController.getAll);
+router.get("/", auth.jwtAuth, storeOwnerController.getAll);
 router.get("/:id", auth.jwtAuth, storeOwnerController.getById);
 router.put("/:id", auth.jwtAuth, storeOwnerController.update);
 router.delete("/:id", auth.jwtAuth, storeOwnerController.delete);

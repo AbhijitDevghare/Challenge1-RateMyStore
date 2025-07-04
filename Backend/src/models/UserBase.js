@@ -84,7 +84,6 @@ class UserBase extends Model {
       address: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
         validate: {
           notNull: { msg: "Address is required" },
           notEmpty: { msg: "Address cannot be empty" },

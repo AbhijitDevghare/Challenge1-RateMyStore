@@ -5,24 +5,25 @@ class ValidateRequestBody {
   checkRequiredFields(data, requiredFields = []) {
     const missing = requiredFields.filter((field) => !data[field]);
     if (missing.length) {
-      throw new AppError(`Missing required fields: ${missing.join(", ")}`, 400);
+        next( new AppError(`Missing required fields: ${missing.join(", ")}`, 400));
     }
   }
 
   isEmailValid(email) {
     if (!emailValidator.validate(email)) {
-      throw new AppError("Invalid Email Format", 400);
+      next(new AppError("Invalid Email Format", 400)) 
     }
   }
 
   isPasswordEqualToConfirmPassword(password, confirmPassword) {
     if (password !== confirmPassword) {
-      throw new AppError("Passwords do not match", 400);
+      next(new AppError("Passwords do not match", 400)) ;
     }
   }
 
   checkUserRegistrationDataField = async (req, res, next) => {
     console.log("RADHERADHE")
+    console.log(req.body)
     try {
       this.checkRequiredFields(req.body, [
         "username",
@@ -38,7 +39,7 @@ class ValidateRequestBody {
       this.isEmailValid(req.body.email);
       next();
     } catch (error) {
-      next(error); 
+      next(new AppError(error.message));
     }
   };
 
@@ -67,7 +68,7 @@ class ValidateRequestBody {
 
       next();
     } catch (error) {
-      next(error);
+      next(new AppError(error.message));
     }
   };
 
@@ -76,7 +77,7 @@ class ValidateRequestBody {
       this.checkRequiredFields(req.body, ["identifier", "password"]);
       next();
     } catch (error) {
-      next(error);
+      next(new AppError(error.message));
     }
   };
 
@@ -89,7 +90,7 @@ class ValidateRequestBody {
             next(new AppError("Rating and Store OwnerId required "))
         }
     } catch (error) {
-        next(error)
+      next(new AppError(error.message));
     }
   }
   

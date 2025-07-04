@@ -11,4 +11,6 @@ router.post("/:id/rate", auth.jwtAuth, userController.rateStoreOwner);
 // router.post("/:id/restore", auth.jwtAuth, userController.restore); 
 // router.get("/deleted/list", auth.jwtAuth, userController.getDeleted); 
 
+
+
 export default router;

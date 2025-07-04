@@ -16,9 +16,9 @@ class AuthService {
   async login(data)
   {
     const strategy = authStrategyFactory(data.role); 
-    const {user, token, cookieOptions}  = await strategy.login(data);
+    const {safeUser, token, cookieOptions}  = await strategy.login(data);
 
-    return {user, token, cookieOptions};
+    return {safeUser, token, cookieOptions};
   }
 }
 

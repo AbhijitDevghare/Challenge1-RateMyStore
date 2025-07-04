@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Setting up CORS
 app.use(cors({
-  origin:"*",
+  origin:"http://localhost:5173",
   credentials: true,
 }));
 
